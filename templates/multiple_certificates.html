@@ -10,12 +10,46 @@
     {% for data in data_list %}
     <div class="certificate">
         <img src="/static/logo.jpg" alt="Logo da Empresa" class="logo">
+
+        <!-- Título: se for NR-12, ajustamos para não repetir duas vezes. Caso contrário, mantemos como antes -->
+        {% if data.certificate_type == "NR-12 Segurança no Trabalho em Máquinas e Equipamentos" %}
+        <h1>Certificado de Treinamento NR-12 Segurança no Trabalho em Máquinas e Equipamentos</h1>
+        {% else %}
         <h1>Certificado de Treinamento {{ data.certificate_type }}</h1>
-        <p id="justify">Certificamos que <strong>{{ data.participant_name }}</strong>, portador do CPF nº <strong>{{ data.participant_cpf }}</strong>, participou e concluiu com aproveitamento o <strong>Treinamento de Segurança {{ data.certificate_type }}</strong>, conforme exigências estabelecidas pela {{ "NR-18" if data.certificate_type == "NR-18 Segurança e Saúde no Trabalho na Indústria da Construção" else ("NR-20" if data.certificate_type == "NR-20 Segurança e Saúde no Trabalho com Inflamáveis e Combustíveis" else "NR-06") }} do Ministério do Trabalho e Emprego.</p>
+        {% endif %}
+
+        <!-- Texto introdutório: se for NR-12, evitamos repetir 'NR-12' duas vezes -->
+        {% if data.certificate_type == "NR-12 Segurança no Trabalho em Máquinas e Equipamentos" %}
+        <p id="justify">
+            Certificamos que <strong>{{ data.participant_name }}</strong>,
+            portador do CPF nº <strong>{{ data.participant_cpf }}</strong>,
+            participou e concluiu com aproveitamento o
+            <strong>Treinamento de Segurança</strong>,
+            conforme exigências estabelecidas pela
+            <strong>NR-12</strong> do Ministério do Trabalho e Emprego.
+        </p>
+        {% else %}
+        <p id="justify">
+            Certificamos que <strong>{{ data.participant_name }}</strong>,
+            portador do CPF nº <strong>{{ data.participant_cpf }}</strong>,
+            participou e concluiu com aproveitamento o
+            <strong>Treinamento de Segurança {{ data.certificate_type }}</strong>,
+            conforme exigências estabelecidas pela
+            {{ "NR-18" if data.certificate_type == "NR-18 Segurança e Saúde no Trabalho na Indústria da Construção"
+               else ("NR-20" if data.certificate_type == "NR-20 Segurança e Saúde no Trabalho com Inflamáveis e Combustíveis"
+               else ("NR-12" if data.certificate_type == "NR-12 Segurança no Trabalho em Máquinas e Equipamentos" else "NR-06")) }}
+            do Ministério do Trabalho e Emprego.
+        </p>
+        {% endif %}
+
+        <!-- Dados gerais do certificado -->
         <p id="justify"><strong>Carga Horária:</strong> {{ data.hours }} horas</p>
         <p id="justify"><strong>Data de Realização:</strong> {{ data.date }}</p>
         <p id="justify"><strong>Local de Realização:</strong> {{ data.location }}</p>
+
         <h2>Conteúdo Programático Obrigatório:</h2>
+
+        <!-- Treinamento NR-18 -->
         {% if data.certificate_type == "NR-18 Segurança e Saúde no Trabalho na Indústria da Construção" %}
         <ol>
             <li>NR-18 Treinamento de Integração – 4 horas
@@ -28,6 +62,8 @@
                 </ol>
             </li>
         </ol>
+
+        <!-- Treinamento NR-06 -->
         {% elif data.certificate_type == "NR-06 Equipamento de Proteção Individual - EPI" %}
         <ol>
             <li>NR-06 Equipamento de Proteção Individual - EPI
@@ -44,32 +80,58 @@
                 </ol>
             </li>
         </ol>
-        {% elif data.certificate_type == "NR-20 Segurança e Saúde no Trabalho com Inflamáveis e Combustíveis" %}
-        <p id="justify20">Treinamento NR-20.11.3, os trabalhadores que laboram em instalações classes I, II ou III e adentram na área ou local de 
-            extração, produção, armazenamento, transferência, 
-            manuseio e manipulação de inflamáveis e líquidos combustíveis, mas não mantêm contato direto com o processo ou processamento, 
-            devem realizar o Curso de Integração sobre Inflamáveis e Combustíveis. (Nova Redação dada pela Portaria MTB 860/2018).</p>
 
-                <p>I) Conteúdo programático teórico:</p>
-                    <ol type="1">
-                        <li>Inflamáveis: características, propriedades, perigos e riscos;</li>
-                        <li>Controles coletivo e individual para trabalhos com inflamáveis;</li>
-                        <li>Fontes de ignição e seu controle;</li>
-                        <li>Proteção contra incêndio com inflamáveis;</li>
-                        <li>Procedimentos básicos em situações de emergência com inflamáveis</li>
-                    </ol>
-                </li>
-            <p>II) Conteúdo programático prático:</p>
-                    <ol type="1">
-                        <li>Conhecimentos e utilização dos sistemas de segurança contra incêndio com inflamáveis.</li>
-                    </ol>
-                </li>         
+        <!-- Treinamento NR-20 -->
+        {% elif data.certificate_type == "NR-20 Segurança e Saúde no Trabalho com Inflamáveis e Combustíveis" %}
+        <p id="justify20">
+            Treinamento NR-20.11.3, os trabalhadores que laboram em instalações classes I, II ou III e
+            adentram na área ou local de extração, produção, armazenamento, transferência,
+            manuseio e manipulação de inflamáveis e líquidos combustíveis, mas não mantêm contato direto com o processo ou processamento,
+            devem realizar o Curso de Integração sobre Inflamáveis e Combustíveis.
+            (Nova Redação dada pela Portaria MTB 860/2018).
+        </p>
+        <p>I) Conteúdo programático teórico:</p>
+        <ol type="1">
+            <li>Inflamáveis: características, propriedades, perigos e riscos;</li>
+            <li>Controles coletivo e individual para trabalhos com inflamáveis;</li>
+            <li>Fontes de ignição e seu controle;</li>
+            <li>Proteção contra incêndio com inflamáveis;</li>
+            <li>Procedimentos básicos em situações de emergência com inflamáveis</li>
+        </ol>
+        <p>II) Conteúdo programático prático:</p>
+        <ol type="1">
+            <li>Conhecimentos e utilização dos sistemas de segurança contra incêndio com inflamáveis.</li>
+        </ol>
+
+        <!-- Treinamento NR-12 (atualizado) -->
+        {% elif data.certificate_type == "NR-12 Segurança no Trabalho em Máquinas e Equipamentos" %}
+        <ol>
+            <li>
+                NR-12 Segurança no Trabalho em Máquinas e Equipamentos, conforme Anexo II 
+                (Redação dada pela Portaria SEPRT n.º 916, de 30/07/19)
+                <ol type="1">
+                    <li>Princípios gerais de segurança em máquinas e equipamentos;</li>
+                    <li>Medidas de proteção: dispositivos de segurança, barreiras físicas e procedimentos de bloqueio;</li>
+                    <li>Aspectos de operação e uso seguro de máquinas;</li>
+                    <li>Sistemas de segurança e métodos de bloqueio;</li>
+                    <li>Análise de risco e mitigação de riscos relacionados às máquinas;</li>
+                    <li>Responsabilidades do empregador e do trabalhador;</li>
+                    <li>Procedimentos de emergência e primeiros socorros em caso de acidente.</li>
+                </ol>
+            </li>
+            <li>
+                Treinamento específico para manuseamento de motor-bomba hidráulico de 6,5cv
+                (Sondagem a Percussão - SPT)
+            </li>
+        </ol>
         {% endif %}
+
         <h2>Assinaturas:</h2>
         <br>
         <div class="signatures">
             <div class="signature">
                 <p>_____________________________</p>
+                <p>Responsável Técnico / Instrutor</p>
                 <p>Guilherme Ozores Pires</p>
                 <p>Engenheiro de Segurança do Trabalho</p>
                 <p>CREA-SP: 5069215056-SP</p>
@@ -80,9 +142,22 @@
                 <p>CPF: {{ data.participant_cpf }}</p>
             </div>
         </div>
+
         <div class="footer">
             <p class="footer">Este certificado deve ser apresentado sempre que solicitado por autoridades competentes.</p>
-            <p class="footer">A validade do treinamento é de acordo com a norma ou necessidade, conforme determinações da {{ "NR-18" if data.certificate_type == "NR-18 Segurança e Saúde no Trabalho na Indústria da Construção" else ("NR-20" if data.certificate_type == "NR-20 Segurança e Saúde no Trabalho com Inflamáveis e Combustíveis" else "NR-06") }}.</p>
+            <p class="footer">
+                A validade do treinamento é de acordo com a norma ou necessidade, conforme determinações da 
+                {% if data.certificate_type == "NR-18 Segurança e Saúde no Trabalho na Indústria da Construção" %}
+                    NR-18
+                {% elif data.certificate_type == "NR-20 Segurança e Saúde no Trabalho com Inflamáveis e Combustíveis" %}
+                    NR-20
+                {% elif data.certificate_type == "NR-12 Segurança no Trabalho em Máquinas e Equipamentos" %}
+                    NR-12
+                {% else %}
+                    NR-06
+                {% endif %}
+                .
+            </p>
             <p class="footer">A empresa se responsabiliza pela veracidade das informações contidas neste certificado.</p>
             <p class="footer"><strong>TUZZOLO ENGENHARIA LTDA</strong></p>
             <p class="footer">CNPJ: 64.723.299/0001-95</p>
