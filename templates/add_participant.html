@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Participante</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+    <h1>Adicionar Participante</h1>
+    <form action="{{ url_for('add_participant') }}" method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required><br>
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" name="cpf" required><br>
+        <label for="data_nascimento">Data de Nascimento:</label>
+        <input type="date" id="data_nascimento" name="data_nascimento"><br>
+        <input type="submit" value="Adicionar">
+    </form>
+    <a href="{{ url_for('index') }}">Voltar</a>
+</div>
+</body>
+</html>

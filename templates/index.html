@@ -1,0 +1,51 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Participantes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+    <h1>Lista de Participantes</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% endwith %}
+    <p><a href="{{ url_for('select_participants') }}">Emitir Certificados</a></p>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Data de Nascimento</th>
+            <th>Ações</th>
+        </tr>
+        {% for participant in participants %}
+        <tr>
+            <td>{{ participant.nome }}</td>
+            <td>{{ participant.cpf }}</td>
+            <td class="data-nascimento">{{ participant.data_nascimento.strftime('%d/%m/%Y') }}</td>
+            <td>
+                <form id="update_form_{{ participant.id }}" action="{{ url_for('update_participant', id=participant.id) }}" method="GET" style="display:inline;">
+                    <button type="submit" class="update">Atualizar</button>
+                </form>
+                <form id="delete_form_{{ participant.id }}" action="{{ url_for('delete_participant', id=participant.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="delete" onclick="return confirm('Tem certeza que deseja deletar este participante?');">Deletar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="4">
+                <form action="{{ url_for('add_participant') }}" method="get">
+                    <button type="submit" class="add">Adicionar Novo Participante</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

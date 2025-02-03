@@ -1,0 +1,191 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
+    margin: 0;
+    padding: 0;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width:fit-content;
+    margin-top: 20px;
+
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #343a40;
+    font-size: 1.5em;
+}
+
+h2 {
+    margin-top: 20px;
+    color: #343a40;
+    font-size: 1.2em;
+}
+
+.container {
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    border-radius: 8px;
+    page-break-after: always;
+    border: 2px solid #000;
+
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #dee2e6;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #343a40;
+    color: #fff;
+}
+
+form {
+    display: inline;
+}
+
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+button.add {
+    background-color: #28a745; /* Green */
+}
+
+button.delete {
+    background-color: #dc3545; /* Red */
+}
+
+button.update {
+    background-color: #007bff; /* Blue */
+}
+
+button.add:hover {
+    background-color: #218838;
+}
+
+button.delete:hover {
+    background-color: #c82333;
+}
+
+button.update:hover {
+    background-color: #0056b3;
+}
+
+input[type="text"], input[type="number"], input[type="date"], select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin: 10px auto;
+    display: block;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin: 20px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.certificate {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    border-radius: 8px;
+    page-break-after: always;
+    border: 2px solid #000;
+
+}
+
+
+.signatures {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    padding-top: 50px;
+    margin-bottom: 20px;
+}
+.signature {
+    width: 45%;
+    display: inline-block;
+    text-align: center;
+}
+
+.signature p {
+    margin: 0;
+}
+
+p.footer {
+    text-align: center;
+    margin-top: 0px;
+    font-size: 0.7em;
+    line-height: 1.0em; /* Ajustado para garantir visibilidade do texto */
+    overflow: auto;
+    margin-bottom: 0px;
+}
+
+#justify {
+    text-align: justify;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+
+#justify20 {
+    text-align: justify;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    font-size: 0.9em;
+}
+
+.data-nascimento {
+    width: 100px;
+  }

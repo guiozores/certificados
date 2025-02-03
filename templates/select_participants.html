@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selecionar Participantes</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+    <h2>Selecionar Participantes para Emitir Certificados</h2>
+    <form action="{{ url_for('select_participants') }}" method="post">
+        <table>
+            <tr>
+                <th>Selecionar</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Data de Nascimento</th>
+            </tr>
+            {% for participant in participants %}
+            <tr>
+                <td><input type="checkbox" name="participants" value="{{ participant.id }}"></td>
+                <td>{{ participant.nome }}</td>
+                <td>{{ participant.cpf }}</td>
+                <td>{{ participant.data_nascimento }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <label for="certificate_type">Tipo de Certificado:</label><br>
+        <select id="certificate_type" name="certificate_type">
+            <option value="NR-18 Segurança e Saúde no Trabalho na Indústria da Construção">NR-18 Segurança e Saúde no Trabalho na Indústria da Construção</option>
+            <option value="NR-06 Equipamento de Proteção Individual - EPI">NR-06 Equipamento de Proteção Individual - EPI</option>
+            <option value="NR-20 Segurança e Saúde no Trabalho com Inflamáveis e Combustíveis">NR-20 Segurança e Saúde no Trabalho com Inflamáveis e Combustíveis</option>
+        </select><br><br>
+        
+        <label for="date">Data:</label><br>
+        <input type="date" id="date" name="date" required><br><br>
+        
+        <label for="hours">Carga Horária:</label><br>
+        <input type="text" id="hours" name="hours" required><br><br>
+        
+        <label for="location">Local:</label><br>
+        <input type="text" id="location" name="location" required><br><br>
+        
+        <input type="submit" value="Gerar Certificados">
+    </form>
+</div>
+</body>
+</html>
